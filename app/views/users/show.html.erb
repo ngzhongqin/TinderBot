@@ -10,5 +10,14 @@
   <%= @user.tinder_id %>
 </p>
 
+<p>
+  <strong>Bio:</strong>
+  <%= @user.bio %>
+</p>
+
+    <% @user.photos.each do |p| %>
+    <%= image_tag(p.url, size: 350) %>
+    <% end %>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

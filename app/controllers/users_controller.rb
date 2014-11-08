@@ -4,8 +4,27 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+
+    @users = User.all.recent
+  end
+
+  def get_users_from_tinder
     UsersHelper.get_new_user
+    @users = User.all.recent
+
+    respond_to do |format|
+      format.html { render :index }
+    end
+
+  end
+
+  def delete_all_users
     @users = User.all
+    @users.delete_all
+
+    @photos = Photo.all
+    @photos.delete_all
+
   end
 
   # GET /users/1
@@ -61,6 +80,8 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

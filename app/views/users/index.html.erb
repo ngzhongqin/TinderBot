@@ -1,10 +1,27 @@
 <h1>Listing users</h1>
 
+<br>
+
+<%= link_to 'New User', new_user_path %>
+<br>
+<%= link_to "Get New Tinder Users", data_get_users_from_tinder_path %>
+<br>
+<%= link_to "Delete all Users", data_delete_all_users_path %>
+<br>
+<br>
 <table>
   <thead>
     <tr>
+      <th>Photo</th>
       <th>Name</th>
-      <th>Tinder</th>
+      <th>Bio</th>
+      <th>Birthday</th>
+      <th>Age</th>
+      <th>Match</th>
+      <th>Com. Like</th>
+      <th>Distance</th>
+      <th>Com. Friend</th>
+      <th>Last Seen</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,8 +29,16 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td><%= link_to image_tag(user.url, size: "100"), user%></td>
         <td><%= user.name %></td>
-        <td><%= user.tinder_id %></td>
+        <td><%= user.bio %></td>
+        <td><%= user.birthday %></td>
+        <td><%= user.age %></td>
+        <td><%= user.match %></td>
+        <td><%= user.common_like_count %></td>
+        <td><%= user.distance_mi %></td>
+        <td><%= user.common_friend_count %></td>
+        <td><%= user.ping_time %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -22,6 +47,4 @@
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New User', new_user_path %>

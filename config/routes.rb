@@ -1,5 +1,25 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :friends
+
+  resources :likes
+
+  resources :data do
+    resources :users
+    resources :photos
+  end
+
+  resources :photos do
+
+  end
+
+  resources :users do
+    resources :photos
+  end
+
+  get "get_users_from_tinder" => "users#get_users_from_tinder"
+  get "delete_all_users" => "users#delete_all_users"
+  get "data_get_users_from_tinder" => "data#data_get_users_from_tinder"
+  get "data_delete_all_users" => "data#data_delete_all_users"
 
   root 'users#index'
 
